@@ -8,6 +8,7 @@ const NameApp = () => {
   const [genderUrl, setGenderUrl] = useState("");
   const [nationalizeUrl, setNationalizeUrl] = useState("");
   const [agifyUrl, setAgifyUrl] = useState("");
+  const [inputSended, setInputSended] = useState(false);
 
   const {
     data: genderData,
@@ -33,6 +34,7 @@ const NameApp = () => {
     setGenderUrl(`http://localhost:3200/api/genderize/${name}`);
     setNationalizeUrl(`http://localhost:3200/api/nationalize/${name}`);
     setAgifyUrl(`http://localhost:3200/api/agify/${name}`);
+    setInputSended(true);
   };
 
   return (
@@ -45,6 +47,7 @@ const NameApp = () => {
         ageData={agifyData}
         isLoading={genderIsLoading || nationalizeIsLoading || agifyIsLoading}
         hasError={genderHasError || nationalizeHasError || agifyHasError}
+        inputSended={inputSended}
       />
     </div>
   );

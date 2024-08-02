@@ -7,8 +7,9 @@ const NameDetails = ({
   ageData,
   isLoading,
   hasError,
+  inputSended,
 }) => {
-  if (isLoading) {
+  if (isLoading && inputSended) {
     return <LoadingMessage />;
   }
 

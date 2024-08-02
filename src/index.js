@@ -2,14 +2,33 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import NameApp from './exercise1/NameApp';
 import CovidApp from './exercise2/CovidApp';
+import InitialPage from './InitialPage';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <InitialPage />,
+  },
+  {
+    path: "/exercise1",
+    element: <NameApp />,
+  },
+  {
+    path: "/exercise2",
+    element: <CovidApp />,
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   //<React.StrictMode>
-    <NameApp />
-    //<CovidApp />
+    <RouterProvider router={router} />
   //</React.StrictMode>
 );
 
