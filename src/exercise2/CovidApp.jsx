@@ -1,26 +1,31 @@
-// src/CovidApp.js
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 import CovidDetails from "./components/CovidDetails";
+import { useFetch } from "../hooks/useFetch";
+import { LoadingMessage } from "../components/LoadingMessage";
 
 const CovidApp = () => {
-  const [covidData, setCovidData] = useState(null);
-
-  const handleFetch = async () => {
-    try {
-      const covidResponse = await axios.get(`/api/covid/historical`);
-      setCovidData(covidResponse.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  const { data, isLoading, errorMessage, hasError } = useFetch(
+    `http://localhost:3200/api/covid/historical`
+  );
 
   return (
-    <div>
+    <>
       <h1>Covid Data</h1>
-      <button onClick={handleFetch}>Fetch Covid Data</button>
-      <CovidDetails covidData={covidData} />
-    </div>
+
+      {isLoading && <LoadingMessage />}
+
+      {hasError && (
+        <p>
+          Error: {errorMessage.code} - {errorMessage.message}
+        </p>
+      )}
+
+      {!isLoading && !hasError && (
+        <div>
+          <CovidDetails covidData={data} />
+        </div>
+      )}
+    </>
   );
 };
 

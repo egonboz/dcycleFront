@@ -1,25 +1,38 @@
 import React, { useState } from "react";
-import axios from "axios";
 import NameForm from "./components/NameForm";
 import NameDetails from "./components/NameDetails";
+import { useFetch } from "../hooks/useFetch";
 
 const NameApp = () => {
-  const [genderData, setGenderData] = useState(null);
-  const [nationalityData, setNationalityData] = useState(null);
-  const [ageData, setAgeData] = useState(null);
+  const [name, setName] = useState("");
+  const [genderUrl, setGenderUrl] = useState("");
+  const [nationalizeUrl, setNationalizeUrl] = useState("");
+  const [agifyUrl, setAgifyUrl] = useState("");
 
-  const handleSubmit = async (name) => {
-    try {
-      const genderResponse = await axios.get(`/api/genderize/${name}`);
-      const nationalityResponse = await axios.get(`/api/nationalize/${name}`);
-      const ageResponse = await axios.get(`/api/agify/${name}`);
+  const {
+    data: genderData,
+    isLoading: genderIsLoading,
+    hasError: genderHasError,
+    errorMessage: genderErrorMessage,
+  } = useFetch(genderUrl);
+  const {
+    data: nationalizeData,
+    isLoading: nationalizeIsLoading,
+    hasError: nationalizeHasError,
+    errorMessage: nationalizeErrorMessage,
+  } = useFetch(nationalizeUrl);
+  const {
+    data: agifyData,
+    isLoading: agifyIsLoading,
+    hasError: agifyHasError,
+    errorMessage: agifyErrorMessage,
+  } = useFetch(agifyUrl);
 
-      setGenderData(genderResponse.data);
-      setNationalityData(nationalityResponse.data);
-      setAgeData(ageResponse.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+  const handleSubmit = (name) => {
+    setName(name);
+    setGenderUrl(`http://localhost:3200/api/genderize/${name}`);
+    setNationalizeUrl(`http://localhost:3200/api/nationalize/${name}`);
+    setAgifyUrl(`http://localhost:3200/api/agify/${name}`);
   };
 
   return (
@@ -28,8 +41,10 @@ const NameApp = () => {
       <NameForm onSubmit={handleSubmit} />
       <NameDetails
         genderData={genderData}
-        nationalityData={nationalityData}
-        ageData={ageData}
+        nationalityData={nationalizeData}
+        ageData={agifyData}
+        isLoading={genderIsLoading || nationalizeIsLoading || agifyIsLoading}
+        hasError={genderHasError || nationalizeHasError || agifyHasError}
       />
     </div>
   );
