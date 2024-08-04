@@ -1,7 +1,7 @@
 import React from "react";
 import CovidDetails from "./components/CovidDetails";
 import { useFetch } from "../hooks/useFetch";
-import { LoadingMessage } from "../components/LoadingMessage";
+import { Loading } from "../components/Loading";
 
 const CovidApp = () => {
   const { data, isLoading, errorMessage, hasError } = useFetch(
@@ -12,7 +12,7 @@ const CovidApp = () => {
     <>
       <h1>Covid Data</h1>
 
-      {isLoading && <LoadingMessage />}
+      {isLoading && <Loading />}
 
       {hasError && (
         <p>

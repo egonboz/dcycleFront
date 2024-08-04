@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./css/InitialPage.css";
 
 const InitialPage = () => {
   const navigate = useNavigate();
@@ -13,10 +14,14 @@ const InitialPage = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Initial Page</h1>
-      <button onClick={handleExercise1}>Go to Exercise 1</button>
-      <button onClick={handleExercise2}>Go to Exercise 2</button>
+      <button className="initialButton" onClick={handleExercise1}>
+        Go to Exercise 1
+      </button>
+      <button className="initialButton" onClick={handleExercise2}>
+        Go to Exercise 2
+      </button>
     </div>
   );
 };
