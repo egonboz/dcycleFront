@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import "../css/PieChart.css";
 
 export const PieChart = ({ data, images, texts }) => {
@@ -66,20 +66,12 @@ const getColor = (index) => {
   const colors = [
     "#7AD2DC",
     "#2F45F5",
-    "#00072D",
-    "#5E5E5E",
-    "#7AD2DC",
-    "#2F45F5",
-    "#00072D",
-    "#5E5E5E",
-    "#7AD2DC",
-    "#2F45F5",
-    "#00072D",
-    "#5E5E5E",
-    "#7AD2DC",
-    "#2F45F5",
-    "#00072D",
-    "#5E5E5E",
+    "#4E9C9F",
+    "#1E3A8A",
+    "#6ABEDC",
+    "#003C8C",
+    "#A0D3E8",
+    "#1D4ED8",
   ];
   return colors[index % colors.length];
 };

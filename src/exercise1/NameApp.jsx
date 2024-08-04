@@ -14,11 +14,11 @@ const NameApp = () => {
   const [agifyUrl, setAgifyUrl] = useState("");
   const [inputSended, setInputSended] = useState(false);
 
-  const [genderData, setGenderData] = useState(null);
+  /* const [genderData, setGenderData] = useState(null);
   const [nationalizeData, setNationalizeData] = useState(null);
-  const [agifyData, setAgifyData] = useState(null);
+  const [agifyData, setAgifyData] = useState(null); */
 
-  /*  const {
+  const {
     data: genderData,
     isLoading: genderIsLoading,
     hasError: genderHasError,
@@ -35,16 +35,16 @@ const NameApp = () => {
     isLoading: agifyIsLoading,
     hasError: agifyHasError,
     errorMessage: agifyErrorMessage,
-  } = useFetch(agifyUrl); */
+  } = useFetch(agifyUrl);
 
   const handleSubmit = (name) => {
     setName(name);
-    setGenderData(genderDataJson);
+    /* setGenderData(genderDataJson);
     setNationalizeData(nationalizeDataJson);
-    setAgifyData(agifyDataJson);
-    /* setGenderUrl(`http://localhost:3200/api/genderize/${name}`);
+    setAgifyData(agifyDataJson); */
+    setGenderUrl(`http://localhost:3200/api/genderize/${name}`);
     setNationalizeUrl(`http://localhost:3200/api/nationalize/${name}`);
-    setAgifyUrl(`http://localhost:3200/api/agify/${name}`); */
+    setAgifyUrl(`http://localhost:3200/api/agify/${name}`);
     setInputSended(true);
   };
 
@@ -57,10 +57,10 @@ const NameApp = () => {
         genderData={genderData}
         nationalityData={nationalizeData}
         ageData={agifyData}
-        /* isLoading={genderIsLoading || nationalizeIsLoading || agifyIsLoading}
-        hasError={genderHasError || nationalizeHasError || agifyHasError} */
-        isLoading={false || false || false}
-        hasError={false || false || false}
+        isLoading={genderIsLoading || nationalizeIsLoading || agifyIsLoading}
+        hasError={genderHasError || nationalizeHasError || agifyHasError}
+        /*  isLoading={false || false || false}
+        hasError={false || false || false} */
         inputSended={inputSended}
       />
     </div>

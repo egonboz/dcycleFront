@@ -2,6 +2,7 @@ import React from "react";
 import CovidDetails from "./components/CovidDetails";
 import { useFetch } from "../hooks/useFetch";
 import { Loading } from "../components/Loading";
+import "../css/exercise2/CovidApp.css"; // Ensure you import the CSS
 
 const CovidApp = () => {
   const { data, isLoading, errorMessage, hasError } = useFetch(
@@ -9,7 +10,7 @@ const CovidApp = () => {
   );
 
   return (
-    <>
+    <div className="container">
       <h1>Covid Data</h1>
 
       {isLoading && <Loading />}
@@ -25,7 +26,7 @@ const CovidApp = () => {
           <CovidDetails covidData={data} />
         </div>
       )}
-    </>
+    </div>
   );
 };
 

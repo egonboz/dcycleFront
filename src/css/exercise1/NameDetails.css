@@ -61,11 +61,11 @@
   position: relative; 
   height: 180px; 
   border-radius: 50%;
-  border: 10px solid #c6c6c6;
+  border: 10px solid #A0D3E8;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* To handle any overflow issues */
+  overflow: hidden;
 }
 
 

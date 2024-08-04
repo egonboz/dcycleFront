@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Loading } from "../../components/Loading.jsx";
 import { PieChart } from "../../components/PieChart.jsx";
 import "../../css/exercise1/NameDetails.css";
-import countriesMap from "../../JsonResponses/countriesMap.json"; // Ajusta la ruta según sea necesario
+import countriesMap from "../../JsonResponses/countriesMap.json";
 
 const NameDetails = ({
   genderData,
@@ -20,6 +20,10 @@ const NameDetails = ({
   const [pieChartGenderData, setPieChartGenderData] = useState([]);
   const [pieChartGenderImages, setPieChartGenderImages] = useState([]);
   const [pieChartGenderTexts, setPieChartGenderTexts] = useState([]);
+
+  const getOppositeGender = (gender) => {
+    return gender === "male" ? "female" : "male";
+  };
 
   useEffect(() => {
     if (nationalityData && nationalityData.country) {
@@ -112,10 +116,6 @@ const NameDetails = ({
   if (genderData && genderData.count === 0) {
     return <p>No existe el nombre introducido.</p>;
   }
-
-  const getOppositeGender = (gender) => {
-    return gender === "male" ? "female" : "male";
-  };
 
   return (
     <div className="cards-container">
